@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div  class="container-fluid">
+    <h1>Ваша Корзина</h1>
+<table class="table table-dark table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Фото</th>
+        <th scope="col">Наименование</th>
+        <th scope="col">Кол-во</th>
+        <th scope="col">Цена ₽</th>
+        <th scope="col">Цена ₽</th>
+        <th scope="col">Общая Цена ₽</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for items in cart %}
+    {% with item=items.product %}
+    <tr>
+        <th scope="row">1</th>
+        <td><img src="{{ item.image.url }}" width="150" height="100">
+        </td>
+        <td>{{ item.title }}</td>
+
+        <td>{{ items.quantity }}</td>
+        <td>
+            <a href="{% url 'cart_remove' item.pk %}">Удалить</a>
+        </td>
+        <td>{{ item.price }} ₽</td>
+        <td>{{ items.total_price }} ₽</td>
+
+    </tr>
+    {% endwith %}
+    {% endfor %}
+    <tr class="total">
+        <td>Итог</td>
+        <td class="num">{{ cart.get_total_price }} ₽</td>
+    </tr>
+
+    </tbody>
+</table>
+ <p class="">
+        <a href="{% url 'home' %}" class="btn btn-dark">Продолжить покупки</a>
+        <a href="{% url 'order_create' %}" class="btn btn-dark">Оформить заказ</a>
+    </p>
+</div>
+{% endblock %}
+
+

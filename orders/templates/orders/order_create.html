@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="row justify-content-center mt-3  ">
+     <h1>Оформление заказа</h1>
+
+
+
+        <form action="" method="post" class="">
+    {{ form.as_p }}
+    <p><input type="submit" value="Оформить заказ"></p>
+    {% csrf_token %}
+</form>
+
+
+
+
+
+
+
+  </div>
+
+    <div  class="container-fluid">
+    <h1>Ваша Заказ</h1>
+<table class="table table-dark table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+
+        <th scope="col">Наименование</th>
+        <th scope="col">Кол-во</th>
+
+        <th scope="col">Цена ₽</th>
+        <th scope="col">Общая Цена ₽</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for items in cart %}
+    {% with item=items.product %}
+    <tr>
+        <th scope="row">1</th>
+
+        <td>{{ item.title }}</td>
+
+        <td>{{ items.quantity }}</td>
+
+        <td>{{ item.price }} ₽</td>
+        <td>{{ items.total_price }} ₽</td>
+
+    </tr>
+    {% endwith %}
+    {% endfor %}
+<!--    <tr class="total">-->
+<!--        <td>Итог</td>-->
+<!--        <td class="num">{{ cart.get_total_price }} ₽</td>-->
+<!--    </tr>-->
+
+    </tbody>
+</table>
+
+</div>
+
+
+
+
+
+
+{% endblock %}
