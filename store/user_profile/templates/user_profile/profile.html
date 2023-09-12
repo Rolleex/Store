@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="row g-0">
+    <div class="col-md-4 ">
+        {% if profile.photo %}
+        <img src="{{ profile.photo.url }}" class="img-fluid rounded-start">
+        {% else %}
+        <p>No photo available</p>
+        {% endif %}
+
+    </div>
+    <div class="col-md-8">
+        <div class="card-body">
+            <h3 class="card-title">{{ profile }}</h3>
+
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

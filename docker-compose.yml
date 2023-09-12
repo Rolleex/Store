@@ -1,0 +1,26 @@
+services:
+  store-app:
+    build:
+      context: .
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./Store:/Store
+    environment:
+      - DB_HOST=database
+      - POSTGRES_DB=storedb
+      - POSTGRES_USER=postgresuser
+      - POSTGRES_PASSWORD=pass
+
+    command: python manage.py runserver 0.0.0.0:8000
+
+    depends_on:
+      - database
+
+  database:
+    image: postgres
+    environment:
+      - POSTGRES_DB=storedb
+      - POSTGRES_USER=postgresuser
+      - POSTGRES_PASSWORD=pass
+

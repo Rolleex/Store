@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<form action="" method="post" class="" enctype="multipart/form-data">
+    {{ form.as_p }}
+    {{ profile_form.as_p }}
+    <p><input type="submit" value="Регистрация"></p>
+    {% csrf_token %}
+</form>
+{% endblock %}
+
